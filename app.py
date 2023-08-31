@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.pylab as pl
 import numpy as np
 
 # 페이지 설정
