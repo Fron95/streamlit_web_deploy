@@ -86,6 +86,8 @@ def main():
 
     # 제목설정
     st.title("Here is Your Plot !!")    
+    st.markdown(f"해당 웹서비스는 더 편리한 데이터시각화를 가능하게 합니다. \n \    
+                ㅇㅇ")
 
 
 
