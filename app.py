@@ -91,6 +91,9 @@ def main():
 
     # 사이드바(1) - csv 파일 업로드
     data_uploading = st.sidebar.file_uploader("#### STEP1 : CSV 파일 업로드", type="csv")
+    with open("10stocks.csv") as sample :
+        sample_download = st.sidebar.download_button("샘플csv파일 다운로드하기", data=sample, file_name="sample_csv.csv")
+    st.sidebar. write("** 데이터는 csv 포맷만 업로드 가능합니다. (excel은 추후 개발예정)")      
     data_info = st.sidebar.markdown("# 꼭 체크해주세요! 데이터 형태파악") 
     # st.sidebar.write("<p style='font-size: 40px;'>This is a paragraph with font size 16px</p>", unsafe_allow_html=True)
 
@@ -114,7 +117,7 @@ def main():
     elif data_uploading is not None :
         # index 포함여부 확인
         index_included = st.sidebar.checkbox("first column is index", True)
-        index_datetime = st.sidebar.checkbox("Index is Datetime type", False)
+        index_datetime = st.sidebar.checkbox("Index is Datetime type", True)
         column_name_included = st.sidebar.checkbox("first row is column name", True)
         # 판다스 데이터프레임으로 제작
         df = pd.read_csv(data_uploading, 
@@ -130,24 +133,21 @@ def main():
 
                 # 본문(3) - 표 출력
         
-        st.write("개선사항")
-        st.write(f"1. 칼라맵 색상표 제공 \n\
-                 8. index str  // float(int) // timestep인 경우에 따라 문제없이 들어갈 수 있게 제공 = type으로 자동인식하게하기.\
-                * 특히 timestep 인 경우에는 format 수정방법 제공,\
-                9. plt.subplots 기능 제공하기.\
-                13. 기능별로 expander 정리하기.\
-                14. 박스 / 화살표 표시하기 (annotation)\
-                15. 경계표시하기 (plt.axhline,plt.axvline\
-                16. 말상자넣기\
-                17. 예시 템플릿 제공하기, 18. axis label 폰트제공, 19. legend alpha조정 지원, 20 레이아웃 바꾸기, x축 위치 지정하기(sincos그래프),\
-                  21. fill below 도 0 기점으로 칠할건지 x축 기점으로 칠한건지 선택할 수 있어야 함.")
+        #st.write("개선사항")
+        #st.write(f"1. 칼라맵 색상표 제공 \n\
+        #         8. index str  // float(int) // timestep인 경우에 따라 문제없이 들어갈 수 있게 제공 = type으로 자동인식하게하기.\
+        #        * 특히 timestep 인 경우에는 format 수정방법 제공,\
+        #        9. plt.subplots 기능 제공하기.\
+        #        13. 기능별로 expander 정리하기.\
+        #        14. 박스 / 화살표 표시하기 (annotation)\
+        #        15. 경계표시하기 (plt.axhline,plt.axvline\
+        #        16. 말상자넣기\
+        #        17. 예시 템플릿 제공하기, 18. axis label 폰트제공, 19. legend alpha조정 지원, 20 레이아웃 바꾸기, x축 위치 지정하기(sincos그래프),\
+        #          21. fill below 도 0 기점으로 칠할건지 x축 기점으로 칠한건지 선택할 수 있어야 함.")
         
-        col1, col2 = st.columns(2)
+        
 
-
-        with col1 :
-            st.header("Your Data :")
-            st.write(df)
+        
 
 
     
@@ -607,9 +607,11 @@ def main():
         # Show the final plot
         # st.pyplot(fig)
         
-        with col2 :            
-            st.write("# Your Figure :")
-            st.pyplot(fig)
+        st.write("# Your Figure :")
+        st.pyplot(fig)
+
+        st.header("Your Data :")
+        st.write(df)
 
 
         st.write("# Save Figure?")
