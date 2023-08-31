@@ -2,3 +2,9 @@ streamlit
 matplotlib==3.4.1
 pandas
 numpy
+altair==4.1.0
+seaborn==0.11.1
+plotly==4.14.3
+joblib==1.0.1
+Pillow==8.2.0
+matplotlib.pyplot
